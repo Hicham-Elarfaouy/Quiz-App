@@ -38,31 +38,34 @@ async function CheckAnswer(selected) {
 function NextQuestion() {
   if (useQuestionsStore().question_length > useQuestionsStore().index + 1) {
     useQuestionsStore().index++;
-  }else{
+  } else {
     router.push("/result")
   }
 }
 </script>
 
 <template>
+
   <div>
-    <p>Id : {{ props.question.id }}</p>
-    <p>Q : {{ props.question.question }}</p>
-    <ul id="options">
-      <li v-for="(option) in props.question.options" :id="option.id" class="option" :key="`option-${option.id}`"
+    <h5 class="my-10 text-lg min-h-32 font-medium tracking-tight text-gray-900 dark:text-white">
+      {{ props.question.question }}</h5>
+
+    <ul id="options" class="grid grid-cols-2 gap-2">
+      <li v-for="(option) in props.question.options" :id="option.id" class="option cursor-pointer block w-full p-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" :key="`option-${option.id}`"
           @click="CheckAnswer(option.id)">
         {{ option.option }}
       </li>
     </ul>
   </div>
+
 </template>
 
 <style scoped>
 .right {
-  background-color: green;
+  background-color: #00b894;
 }
 
 .wrong {
-  background-color: red;
+  background-color: #e74c3c;
 }
 </style>
